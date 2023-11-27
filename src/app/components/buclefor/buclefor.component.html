@@ -1,0 +1,25 @@
+<div class="container">
+    <h1>Bucle for</h1>
+    <hr/>
+    <div class="container mt-3">
+        <h2 class="mb-3">Con directivas</h2>
+        <div *ngIf="nombres.length > 0" class="mb-4">
+            <div *ngFor="let nombre of nombres" class="alert alert-info">
+                {{nombre}}
+            </div>
+        </div>
+        
+        <div *ngIf="nombres.length == 0" class="alert alert-warning"> No hay nombres</div>
+    </div>
+    <hr/>
+    <div class="container mt-3 mb-3">
+        <h2 class="mb-3">Nueva sintaxis</h2>
+        @for (nombre of nombres; track nombre) {
+            <div class="alert alert-info">{{nombre}}</div>
+        } @empty {
+            <div class="alert alert-warning">No hay nombres</div>
+        }
+        <button class="btn btn-success me-2" (click)="rellenarNombres()">Rellenar</button>
+        <button class="btn btn-danger" (click)="vaciarNombres()">Vaciar</button>
+    </div>
+</div>

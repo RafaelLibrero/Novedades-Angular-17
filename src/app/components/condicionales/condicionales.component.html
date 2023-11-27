@@ -1,0 +1,95 @@
+<!-- Directivas -->
+<div class="container">
+    <h1 class="mt-2">Condicional If</h1>
+    <hr/>
+    <div class="container mt-3">
+        <h2 class="mb-3">Con directivas</h2>
+        <div *ngIf="statusDirectiva; else nostatus" class="alert alert-success">
+            Status es {{statusDirectiva}}
+        </div>
+        <ng-template #nostatus>
+            <div class="alert alert-danger">No hay status</div>
+        </ng-template>
+        <button class="btn btn-primary" (click)="cambiarStatusDirectiva()">Cambiar status</button>
+    </div>
+    
+    <hr/>
+    <!-- Nueva sintaxis -->
+    <div class="container mt-3">
+        <h2 class="mb-3">Nueva sintaxis</h2>
+        @if (statusNueva) {
+            <div class="alert alert-success">Status es {{statusNueva}}</div> 
+        } @else {
+            <div class="alert alert-danger">No hay status</div>
+        }
+        <button class="btn btn-primary" (click)="cambiarStatusNueva()">Cambiar status</button>
+    </div>
+    
+    <hr/>
+    <!-- Ahora else if es posible -->
+    <div class="container mt-3">
+        <h2 class="mb-4">Ejemplo con else if</h2>
+        <div class="form-group">
+            <label class="mb-3" for="edad">Edad</label>
+            <input type="number" class="form-control" name="edad" 
+            #cajaedad="ngModel" [(ngModel)]="edad">
+        </div>
+    
+        <div class="mt-3">
+            @if (edad) {
+                @if (edad < 0) {
+                    <div class="alert alert-danger">Edad no válida</div> 
+                } @else if (edad < 18) {
+                    <div class="alert alert-warning">Eres menor de edad</div> 
+                } @else {
+                    <div class="alert alert-success">Eres mayor de edad</div> 
+                }  
+            }
+        </div>
+        
+    </div>
+
+    
+    <h1>Condicional Switch</h1>
+    <hr/>
+        
+    <!-- Directivas -->
+    <div class="container mt-3">
+        <h2 class="mb-3">Con directivas</h2>
+        <div [ngSwitch]="selectedOption">
+            <div *ngSwitchCase="'option1'" class="alert alert-success">
+                Opción 1 seleccionada
+            </div>
+            <div *ngSwitchCase="'option2'" class="alert alert-info">
+                Opción 2 seleccionada
+            </div>
+            <div *ngSwitchCase="'option3'" class="alert alert-warning">
+                Opción 3 seleccionada
+            </div>
+            <div *ngSwitchDefault class="alert alert-secondary">
+                Ninguna opción seleccionada
+            </div>
+        </div>
+    </div>
+
+    <!-- Nueva sintaxis -->
+    <div class="container mt-3">
+        <h2 class="mb-3">Nueva sintaxis</h2>
+        @switch (selectedOption) {
+            @case ('option1') { <div class="alert alert-success">Opción 1 seleccionada</div>}
+            @case ('option2') { <div class="alert alert-info">Opción 2 seleccionada</div>}
+            @case ('option3') { <div class="alert alert-warning">Opción 3 seleccionada</div>}
+            @default { <div class="alert alert-secondary">Ninguna opción seleccionada</div> }
+        }
+    </div>
+      
+    <div class="container mt-3 mb-5">
+        <label for="options">Selecciona una opción:</label>
+        <select class="form-select" id="options" [(ngModel)]="selectedOption">
+            <option value="option1">Opción 1</option>
+            <option value="option2">Opción 2</option>
+            <option value="option3">Opción 3</option>
+        </select>
+    </div>
+      
+</div>

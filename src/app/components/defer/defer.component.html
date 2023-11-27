@@ -1,0 +1,31 @@
+<div class="container mt-3">
+    <div class="form-check">
+        <input #checkboxDefer class="form-check-input" type="checkbox" [checked]="isCheckedDefer" 
+        (change)="updateCheckboxState(checkboxDefer.checked)" id="checkboxDefer"/>
+        <label class="form-check-label" for="checkboxDefer">
+            Marca esta casilla para cargar el componente diferido</label>
+    </div>
+    @defer (when isCheckedDefer) {
+        <div class="alert alert-success mt-3">
+            <app-deferrableview />
+        </div>
+    }
+    @placeholder {
+        <div class="alert alert-secondary mt-3">
+            <span >Placeholder</span>
+        </div>
+    }
+    @error {
+        <div class="alert alert-danger mt-3">
+            <span >Error</span>
+        </div>
+    }
+    @loading(minimum 1s) {
+        <div class="alert alert-info mt-3">
+            <span >Cargando...</span>
+        </div>
+    }
+  </div>
+  <br>
+  
+  
